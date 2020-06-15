@@ -196,6 +196,43 @@ v[v != 19 & v>15]
 - ```which.max(x)```: nos da la primera posición en la que el vector $x$ toma su valor máximo
 - ```which(x==max(x))```: da todas las posiciones en las que el vector $x$ toma sus valores máximos
 
+## Valores Na
+- ```sum(x)```: nos restonar NA
+```{r}
+x = c(1,2,3,4,5,6,7,8,9,NA,NA,10)
+sum(x)
+```
+- ```sum(x, na.rm = TRUE)```: ignora los NA
+```{r}
+sum(x, na.rm = TRUE)
+```
+## is.na()
+- ```is.na(x)```: nos retorna un vector de booleanos
+
+- Posicion en donde los valores son NA
+```{r}
+which(is.na(x))
+```
+
+- Reemplazar los NA por la media
+```{r}
+y = x
+y[is.na(x)] = mean(x, na.rm=TRUE)
+y
+```
+
+## Trabajando con NA
+
+- La funcion cumsum no admite ```na.rm = TRUE```. 
+- Se debe realizar de la siguiente forma
+```{r}
+cumsum(x[!is.na(x)])
+```
+
+- Eliminar valores NA de un vector
+```{r}
+cumsum(na.omit(x))
+```
 
 # Factores
 
@@ -380,7 +417,7 @@ apply(A, MARGIN = 2, FUN = sum)
 - `mtx.exp(matriz,n)`: para elevar la matriz a $n$
     - Del paquete `Biodem`
 		- No calcula las potencias exactas, las aproxima
-- `%^%`: para elevar matrices
+- `%%`: para elevar matrices
     - Del paquete `expm`
 		- No calcula las potencias exactas, las aproxima
 
@@ -451,4 +488,15 @@ M = matrix(c(0,1,0,-7,3,-1,16,-3,4), nrow=3, byrow=TRUE)
 eigen(M)
 ```
     
+## Determinante de un matriz con valores complejos
+- No se encuentra definido para complejos en R
+```{r, eval=FALSE}
+M = matrix(c(3-2i, 5+3i, 1+2i, 2-1i), nrow=2, byrow=TRUE)
+det(M)
+```
+```Error in determinant.matrix(x, logarithm = TRUE, ...) : 'determinant' not currently defined for complex matrices```
 
+- Puede ser calculado, haciendo uso de la propiedad: det(M) = producto de sus autovalores
+```{r}
+prod(eigen(M)$values)
+```

@@ -12,7 +12,7 @@ output:
 knitr::opts_chunk$set(echo = TRUE, comment = NA)
 ```
 
-##Data frames
+## Data frames
 
 <l class="definition">Data frame.</l> Un data frame es una tabla de doble entrada, formada por variables en las columnas y observaciones de estas variables en las filas, de manera que cada fila contiene los valores de las variables para un mismo caso o un mismo individuo.
 
@@ -57,14 +57,14 @@ tail(Orange,4)
 
 ## Obteniendo información del data frame
 
-- `d.f$nombre_variable`: para obtener una columna concreta de un dataframe
+- `df$nombre_variable`: para obtener una columna concreta de un dataframe
     - El resultado será un vector o un factor, según cómo esté definida la columna dentro del data frame
     - Las variables de un data frame son internas, no están definidas en el entorno global de trabajo de R
     
 
 ## Sub-data frames
 
-- `d.f[n,m]`: para extraer “trozos” del data frame por filas y columnas (funciona exactamente igual que en matrices) donde $n$ y $m$ pueden definirse como:
+- `df[n:m,n:m]`: para extraer “trozos” del data frame por filas y columnas (funciona exactamente igual que en matrices) donde $n$ y $m$ pueden definirse como:
     - intervalos
     - condiciones
     - números naturales
@@ -106,9 +106,10 @@ Aquí tenéis una [lista de data frames](http://www.public.iastate.edu/~maitra/s
 ## Parámetros de read.table()
 
 ```{r}
-students = read.table("http://www.public.iastate.edu/~maitra/stat501/datasets/morel.dat", 
-  col.names = c("technicalDisciplines","aptitude","maths", "language",
-                "generalKnowledge"))
+# students = read.table("http://www.public.iastate.edu/~maitra/stat501/datasets/morel.dat")
+students = read.table("../data/StudentsData", 
+                      col.names = c("technicalDisciplines","aptitude","maths",
+                                    "language","generalKnowledge"))
 head(students,8)
 ```
 
@@ -155,11 +156,14 @@ str(students2)
 ## Construyendo data frames
 
 ```{r}
-Algebra = c(1,2,0,5,4,6,7,5,5,8)
-Analysis = c(3,3,2,7,9,5,6,8,5,6)
-Statistics = c(4,5,4,8,8,9,6,7,9,10)
-grades = data.frame(Alg = Algebra, An = Analysis, Stat = Statistics)
-str(grades)
+Curso =      c("Curso 1","Curso 2","Curso 2","Curso 1","Curso 2","Curso 1")
+Algebra =    c(        1,        2,        0,        5,        4,        6)
+Analysis =   c(        3,        3,        2,        7,        9,        5)
+Statistics = c(        4,        5,        4,        8,        8,        9)
+grades = data.frame(Curso = Curso, Alg = Algebra, An = Analysis, Stat = Statistics,
+                    stringsAsFactors = TRUE)
+row.names(grades) = c("Maria","Gabriel","Agustin","Federico","Ana","Jimena")
+head(grades, 5)
 ```
 
 ## Construyendo data frames
@@ -179,7 +183,7 @@ str(grades)
 ## Construyendo data frames
 
 ```{r}
-Calculus = c(5,4,6,2,1,0,7,8,9,6)
+Calculus = c(5,4,6,2,1,0)
 grades2 = cbind(grades, Calculus)
 head(grades2)
 ```

@@ -194,6 +194,7 @@ Respuestas
 
 Con R, la tabla de frecuencias absolutas de un vector que representa una variable cualitativa se calcula con la función `table()`.
 
+Tambien recibe el nombre de tabla de contingencia.
 ```{r}
 table(x)
 
@@ -413,7 +414,7 @@ La función `CrossTable()` del paquete `gmodels` permite producir (especificando
 
 La leyenda *Cell Contents* explica los contenidos de cada celda de la tabla: la frecuencia absoluta, la frecuencia relativa por filas, la frecuencia relativa por columnas, y la frecuencia relativa global. Esta función dispone de muchos parámetros que permiten modificar el contenido de las celdas, y que podéis consultar en `help(CrossTable)`.
 
-
+Ejemplo en documento 01-table
 <!--
 ```{r}
 #Instalamos y cargamos el paquete gmodels
@@ -588,13 +589,13 @@ barplot(table(x), horiz=TRUE)
 ## Diagrama de barras - Tabla bidimensional
 
 ```{r}
-barplot(table(Sexo,Respuestas), legend.text = TRUE)
+barplot(table(Sexo,Respuestas), legend.text = TRUE, col = c("lightblue", "pink"))
 ```
 
 ## Diagrama de barras - Tabla bidimensional
 
 ```{r}
-barplot(table(Sexo,Respuestas), beside=TRUE, legend.text=TRUE)
+barplot(table(Sexo,Respuestas), beside=TRUE, legend.text=TRUE, col = c("lightblue", "pink"))
 ```
 
 ## Diagrama de barras - Parámetros de las leyendas
@@ -602,7 +603,7 @@ barplot(table(Sexo,Respuestas), beside=TRUE, legend.text=TRUE)
 ```{r}
 
 barplot(table(Respuestas,Sexo), beside=TRUE, names=c("Men", "Women"), 
-        col=c("yellow","lightblue"), legend.text=c("No","Yes"))
+        col=c("firebrick1","darkolivegreen1"), legend.text=c("No","Yes"))
 ```
 
 ## Diagrama circular
@@ -645,7 +646,7 @@ Un gráfico de mosaico de una tabla se obtiene con R aplicando la función `plot
 ## Gráficos de mosaico
 ```{r}
 plot(table(Sexo,Respuestas), main="Gráfico de mosaico de las variables
-     \"Sexo\" y \"Respuestas\"")
+     \"Sexo\" y \"Respuestas\"", col=c("firebrick1","darkolivegreen1"))
 ```
 
 ## Gráficos de mosaico
@@ -661,7 +662,7 @@ Finalmente, cada sector rectangular se vuelve a dividir a lo ancho en regiones d
 
 ```{r}
 plot(HairEyeColor, main="Gráfico de mosaico de la tabla HairEyeColor", 
-     col=c("pink","lightblue"))
+     col=c("lightblue","pink"))
 ```
 
 ## Muchos más gráficos
@@ -673,15 +674,14 @@ Los paquetes `vcd` y `vcdExtra` incluyen otras funciones que producen representa
 - La función `cotabplot` de `vcd` produce un diagrama de mosaico para cada nivel de la tercera variable.
 - La función `mosaic3d` de `vcdExtra` produce un diagrama de mosaico tridimensional en una ventana de una aplicación para gráficos 3D interactivos.
 
-<!--
-Muchos más gráficos
+
+## 
 
 ```{r}
-#library(vcd)
-#País = sample(c("Francia","Alemania","España"), size = length(Sexo), replace = T)
-#cotabplot(table(Sexo,Respuestas,País))
+library(vcd)
+cotabplot(HairEyeColor)
 ```
-
+<!--
 Muchos más gráficos
 
 ```{r}

@@ -28,7 +28,21 @@ notas = c(2,5,7,9,8,3,5,6,10,7)
 plot(alumnos,notas)
 ```
 
+## Añadir un pie de foto a una grafico en una chunks
 
+```{r, fig.height = 4, fig.cap = "Pie de grafico", fig.align = "center", fig.otras}```
+```{r,echo=FALSE,fig.height = 4, fig.width = 7, fig.align = "center", fig.cap="Notas de alumnos"}
+alumnos = c(1:10)
+notas = c(2,5,7,9,8,3,5,6,10,7)
+plot(alumnos,notas)
+```
+
+## Representar una funcion f(x)
+
+```{r}
+f <- function(x){ sqrt(x) }
+plot(f)
+```
 
 ## Parámetros de la función plot()
 
@@ -188,6 +202,7 @@ text(alumnos,notas, labels = c("S","A","N","E","N","S","A","A","E","N"),
 - `curve(curva)`: permite añadir la gráfica de una curva a un gráfico existente
     - `add=TRUE`: si no, la curva no se añade
     - La curva se puede especificar mediante una expresión algebraica con variable $x$, o mediante su nombre si la hemos definido antes
+- `abline(h=0:n, v=0:n, lty = "dotte, cold = "grey` Añadir una grilla al grafico
     
     
 

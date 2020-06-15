@@ -140,6 +140,7 @@ dados.df = data.frame(Puntuacion = 1:6,
                       Fr.acu = as.vector(cumsum(table(dados))),
                       Fr.racu = as.vector(round(cumsum(prop.table(table(dados))),2)))
 ```
+De no hacer as.vector tambien entariamos incluyendo los nombres de los niveles
 
 
 ## Ejemplo 2
@@ -445,8 +446,11 @@ Por motivos de espacio, no se muestran los resultados proporcionados por R.
 </div>
 
 ```{r, results="hide"}
-by(iris[,c(1,3)], iris$Species, FUN = summary)
+by(iris[,c(1,3)], iris$Species, FUN = summary) 
+# col 1 y 3 corresponden a anchura y longitudes de petalos
+# irir$Species agrupo por especies
 ```
+Resultado en summary.html
 
 ## Función aggregate()
 

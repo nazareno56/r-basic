@@ -455,10 +455,10 @@ Por su parte, la segunda es para cuando conocemos los extremos de las clases. Su
 ```{r}
 #Primera función
 TablaFrecs = function(x,k,A,p){ 
-  L = min(x)-p/2+A*(0:k)
-  x_cut = cut(x, breaks = L, right=FALSE)
-  intervals = levels(x_cut)
-  mc = (L[1]+L[2])/2+A*(0:(k-1))
+  L = min(x)-p/2+A*(0:k) # Extremos de los intervalos
+  x_cut = cut(x, breaks = L, right=FALSE) # Divido los datos en los intervalos
+  intervals = levels(x_cut) # los intervalos como los niveles de x_cut
+  mc = (L[1]+L[2])/2+A*(0:(k-1)) # marca de clase
   Fr.abs = as.vector(table(x_cut)) 
   Fr.rel = round(Fr.abs/length(x),4) 
   Fr.cum.abs = cumsum(Fr.abs) 
@@ -470,11 +470,12 @@ TablaFrecs = function(x,k,A,p){
 
 ## Tablas de frecuencias
 
+variante de la anterior, partiendo de L vector de extremos de los intervalos
 ```{r}
 TablaFrecs.L = function(x,L,V){
-  x_cut = cut(x, breaks=L, right=FALSE, include.lowest=V)
-  intervals = levels(x_cut)
-  mc = (L[1:(length(L)-1)]+L[2:length(L)])/2
+  x_cut = cut(x, breaks=L, right=FALSE, include.lowest=V) # Divido los datos en los intervalos
+  intervals = levels(x_cut) # los intervalos como los niveles de x_cut
+  mc = (L[1:(length(L)-1)]+L[2:length(L)])/2 # marca de clase
   Fr.abs = as.vector(table(x_cut)) 
   Fr.rel = round(Fr.abs/length(x),4)
   Fr.cum.abs = cumsum(Fr.abs)

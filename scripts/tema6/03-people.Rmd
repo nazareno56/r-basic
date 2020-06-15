@@ -23,12 +23,12 @@ prop.table(HairEyeColor, margin = c(1,2))
 ```
 
 ```{r}
-aperm(HairEyeColor, perm = c("Sex", "Hair", "Eye"))
+aperm(HairEyeColor, perm = c("Sex", "Hair", "Eye")) # Cambiar el orden de las variables
 ```
 
 ```{r}
 library(kableExtra)
-kable(HairEyeColor)
+kable(HairEyeColor) # Imprimo en otro formato
 ```
 
 ```{r, results='asis'}

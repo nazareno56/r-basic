@@ -34,6 +34,11 @@ m_t = moda(datos)
 La moda del data frame es: `r m_t`.
 
 # Paquete `gmodels`
+  Cell contents  
+frecuencia absoluta  
+frecuencia marginal por filas  
+frecuencia marginal por columnas  
+frecuencia margianl global  
 ```{r}
 library(gmodels)
 sex = factor(c("H", "M", "M", "M", "H", "H", "M", "M"))
